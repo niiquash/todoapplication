@@ -8,12 +8,7 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      item: "sing karaoke",
-      completed: false,
-    },
-    {
-      id: 2,
-      item: "learn react",
+      item: "build a to-do list in react",
       completed: false,
     },
   ]);
