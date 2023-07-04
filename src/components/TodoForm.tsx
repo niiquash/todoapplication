@@ -1,21 +1,20 @@
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 
 interface Props {
-  singleItem: string;
-  setSingleItem: (singleItem: string) => void;
-  handleSubmit: (e: FormEvent) => void;
+  onSubmit: (task: string) => void;
 }
 
-const TodoForm = ({ handleSubmit, setSingleItem, singleItem }: Props) => {
+const TodoForm = ({onSubmit}: Props) => {
+  const [task, setTask] = useState("");
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={() => onSubmit(task)}>
       <div className="mb-3">
         <label htmlFor="todoItem" className="form-label">
           To-do Item
         </label>
         <input
-          onChange={(e) => setSingleItem(e.target.value)}
-          value={singleItem}
+          onChange={(e) => setTask(e.target.value)}
+          value={task}
           id="todoItem"
           required
           type="text"

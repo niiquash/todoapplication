@@ -1,28 +1,38 @@
-import { RiDeleteBin6Line } from "react-icons/ri";
+import ListFilter from "./ListFilter";
 
-interface Props {
-  items: string[];
-  handleDelete: (item: string) => void;
+interface TodoItems {
+  id: number;
+  task: string;
+  completed: boolean;
 }
 
-const TaskList = ({ handleDelete, items }: Props) => {
+interface Props {
+  todoItems: TodoItems[];
+  handleDelete: (id: number) => void;
+}
+
+
+const TaskList = ({ handleDelete, todoItems }: Props) => {
   return (
-    <ul className="list-group">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="list-group-item d-flex justify-content-between"
-        >
-          {item}
-          <button
-            className="btn btn-outline-danger"
-            onClick={() => handleDelete(item)}
+    <>
+      <div className="mb-3">{todoItems.length > 0 && <ListFilter />}</div>
+      <ul className="list-group">
+        {todoItems.map((item) => (
+          <li
+            key={item.id}
+            className="list-group-item d-flex justify-content-between"
           >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+            {item.task}
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => handleDelete(item.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

@@ -1,33 +1,42 @@
-import { FormEvent, useState } from 'react'
-import Header from './components/Header'
-import TaskList from './components/TaskList'
-import TodoForm from './components/TodoForm'
+import { FormEvent, useState } from "react";
+import Header from "./components/Header";
+import TaskList from "./components/TaskList";
+import TodoForm from "./components/TodoForm";
 
 function App() {
+  const [todoItems, setTodoItems] = useState([
+    {
+      id: 1,
+      task: "eat fufu",
+      completed: false,
+    },
+    {
+      id: 2,
+      task: "eat tofu",
+      completed: false,
+    },
+    {
+      id: 3,
+      task: "eat snafu",
+      completed: false,
+    },
+  ]);
 
-  const [items, setItems] = useState(new Array());
-  const [singleItem, setSingleItem] = useState("")
+  const handleDelete = (id: number) => {
+    setTodoItems(todoItems.filter(item => item.id !== id))
+  }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setItems([
-      ...items,
-      singleItem,
-    ])
-    setSingleItem('');
-  }
- 
-  const handleDelete = (item: string) => {
-    setItems(items.filter(i => i !== item))
-  }
+  const onSubmit = (data: string) => {
+    setTodoItems([...todoItems, { task: data, id: todoItems.length+1, completed: false}])
+  } 
 
   return (
     <div>
       <Header />
-      <TodoForm handleSubmit={handleSubmit} singleItem={singleItem} setSingleItem={setSingleItem} />
-      <TaskList handleDelete={handleDelete} items={items} />
+      <TodoForm onSubmit={(data)=>onSubmit(data)} />
+      <TaskList handleDelete={handleDelete} todoItems={todoItems} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
