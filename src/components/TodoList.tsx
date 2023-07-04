@@ -9,9 +9,10 @@ interface Todo {
 
 interface Props {
   todos: Todo[];
+  handleDelete: (id: number) => void;
 }
 
-const TodoList = ({ todos }: Props) => {
+const TodoList = ({ handleDelete, todos }: Props) => {
   return (
     <ul className="list-group">
       {todos &&
@@ -22,7 +23,7 @@ const TodoList = ({ todos }: Props) => {
           >
             {todo.item}
             <RiDeleteBin6Line
-              onClick={() => console.log('deleted', todo.item)}
+              onClick={() => handleDelete(todo.id)}
               color="red"
               size={20}
             />
