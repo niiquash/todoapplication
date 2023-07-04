@@ -12,6 +12,7 @@ const TodoForm = ({ onSubmit }: Props) => {
     e.preventDefault();
     onSubmit(task);
     setTask("");
+    console.log(task);
   };
 
   return (
@@ -23,11 +24,13 @@ const TodoForm = ({ onSubmit }: Props) => {
         <input
           onChange={(e) => setTask(e.target.value)}
           id="task"
+          required
           type="text"
           className="form-control mb-3"
+          value={task}
         />
         <button type="submit" className="btn btn-primary">
-          Submit
+          Add Task
         </button>
       </div>
     </form>

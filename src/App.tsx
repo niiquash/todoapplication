@@ -27,6 +27,8 @@ function App() {
       ...todos,
       { id: todos.length + 1, item: newTodo, completed: false },
     ]);
+
+    console.log(todos)
   }
 
   return (
