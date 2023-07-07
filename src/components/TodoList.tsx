@@ -10,17 +10,22 @@ interface Todo {
 }
 
 interface Props {
-  todos: Todo[];
+  currentTodo: Todo[];
   handleDelete: (id: number) => void;
   handleUncheck: (id: number) => void;
   handleCheck: (id: number) => void;
 }
 
-const TodoList = ({ handleCheck, handleDelete, handleUncheck, todos }: Props) => {
+const TodoList = ({
+  handleCheck,
+  handleDelete,
+  handleUncheck,
+  currentTodo,
+}: Props) => {
   return (
     <ul className="list-group">
-      {todos &&
-        todos.map((todo) => (
+      {currentTodo &&
+        currentTodo.map((todo) => (
           <li
             key={todo.id}
             className="list-group-item  d-flex justify-content-between"

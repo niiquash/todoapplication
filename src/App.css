@@ -6,6 +6,6 @@
     margin-bottom: 16px;
 }
 
-.btn-success {
+.btn-success, .btn-info {
     margin-right: 8px;
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface Props {
     setCurrentListView: (anythingHere: string) => void;
 }
@@ -7,6 +5,12 @@ interface Props {
 const ListFilter = ({ setCurrentListView }: Props) => {
   return (
     <div className="filter-btns">
+      <button
+        onClick={() => setCurrentListView("all")}
+        className="btn btn-info"
+      >
+        All
+      </button>
       <button
         onClick={() => setCurrentListView("completed")}
         className="btn btn-success"
