@@ -1,5 +1,7 @@
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
+import { MdOutlineCheckBox } from "react-icons/md";
 
 interface Todo {
   id: number;
@@ -10,9 +12,11 @@ interface Todo {
 interface Props {
   todos: Todo[];
   handleDelete: (id: number) => void;
+  handleUncheck: (id: number) => void;
+  handleCheck: (id: number) => void;
 }
 
-const TodoList = ({ handleDelete, todos }: Props) => {
+const TodoList = ({ handleCheck, handleDelete, handleUncheck, todos }: Props) => {
   return (
     <ul className="list-group">
       {todos &&
@@ -22,11 +26,25 @@ const TodoList = ({ handleDelete, todos }: Props) => {
             className="list-group-item  d-flex justify-content-between"
           >
             {todo.item}
-            <RiDeleteBin6Line
-              onClick={() => handleDelete(todo.id)}
-              color="red"
-              size={20}
-            />
+            <div className="list-controls">
+              {todo.completed ? (
+                <MdOutlineCheckBox
+                  onClick={() => handleUncheck(todo.id)}
+                  size={20}
+                  color="green"
+                />
+              ) : (
+                <MdOutlineCheckBoxOutlineBlank
+                  onClick={() => handleCheck(todo.id)}
+                  size={20}
+                />
+              )}
+              <RiDeleteBin6Line
+                onClick={() => handleDelete(todo.id)}
+                color="red"
+                size={20}
+              />
+            </div>
           </li>
         ))}
     </ul>
